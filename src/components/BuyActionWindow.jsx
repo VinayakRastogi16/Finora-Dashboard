@@ -13,14 +13,14 @@ const BuyActionWindow = ({ uid }) => {
   
 
   const handleBuyClick = ()=>{
-    axios.post("http://localhost:8080/newOrder", {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/newOrder`, {
       name: uid,
       qty: stockQuantity,
       price: stockPrice,
       mode: "BUY"
     });
 
-    axios.post("http://localhost:8080/buy", {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/buy`, {
       name: uid,
       qty: stockQuantity,
       price: stockPrice,

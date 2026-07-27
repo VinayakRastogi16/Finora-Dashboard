@@ -1,5 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+const handleLogout = async () => {
+  try {
+    await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/logout`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+
+    window.location.href = "https://finora-y3fy.netlify.app/login";
+  } catch (error) {
+    console.error(error);
+    alert("Logout failed");
+  }
+};
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
@@ -57,7 +75,24 @@ const Menu = () => {
           <div className="avatar">ZU</div>
           <p className="username">USERID</p>
         </div>
-        {isProfileDropdownOpen}
+        {isProfileDropdownOpen && (
+          <div className="profile-dropdown">
+            <button className="dropdown-item">
+              Profile
+            </button>
+
+            <button className="dropdown-item">
+              Settings
+            </button>
+
+            <button
+              className="dropdown-item logout"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

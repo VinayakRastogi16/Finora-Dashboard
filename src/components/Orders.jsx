@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from "react";
-import axios from "axios"
+import api from "../api/axios";
 import { Link } from "react-router-dom";
 
 
@@ -8,7 +8,7 @@ const Orders = () => {
   const [allOrders, setAllOrders] = useState([]);
 
   useEffect(()=>{
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/allOrders`).then((res)=>{
+    api.get("/allOrders").then((res)=>{
       setAllOrders(res.data);
     })
   },[])

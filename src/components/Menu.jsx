@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import api from "../api/axios";
 
 const handleLogout = async () => {
   try {
-    await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/logout`,
+    api.post(
+      "/logout",
       {},
       {
         withCredentials: true,
